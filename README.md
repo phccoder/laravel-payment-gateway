@@ -1,61 +1,98 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Laravel Payment Gateway with TALL Stack & Stripe 🚀
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+This is a public project demonstrating how to integrate modern payment methods like **Apple Pay** and **Google Pay** into a Laravel application. It is built with the **TALL stack** (Tailwind CSS, Alpine.js, Livewire, and Laravel) and uses **Stripe Payment Intents** for a secure and robust payment flow.
 
-## About Laravel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+***
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Key Features
 
-## Learning Laravel
+* **Stripe Payment Intents:** Securely process payments without ever having your server handle sensitive card information.
+* **Dynamic Payment Element:** Stripe's single UI component automatically displays relevant payment methods to the user (Cards, Google Pay, Apple Pay, etc.).
+* **TALL Stack:** A fully reactive frontend experience built with Livewire and Alpine.js.
+* **Secure API Key Handling:** Follows Laravel best practices for managing secret keys using the `.env` file.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+***
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## Tech Stack 💻
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+* [Laravel](https://laravel.com/)
+* [Livewire](https://livewire.laravel.com/)
+* [Alpine.js](https://alpinejs.dev/)
+* [Tailwind CSS](https://tailwindcss.com/)
+* [Stripe PHP SDK](https://github.com/stripe/stripe-php) & [Stripe.js](https://stripe.com/docs/js)
 
-## Laravel Sponsors
+***
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## Getting Started
 
-### Premium Partners
+Follow these instructions to get the project up and running on your local machine.
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+### **1. Prerequisites**
 
-## Contributing
+* PHP >= 8.2
+* Composer
+* Node.js & NPM
+* A Stripe Account
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### **2. Installation**
 
-## Code of Conduct
+1.  **Clone the repository:**
+    ```bash
+    git clone [https://github.com/phccoder/laravel-payment-gateway.git](https://github.com/phccoder/laravel-payment-gateway.git)
+    cd laravel-payment-gateway
+    ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+2.  **Install dependencies:**
+    ```bash
+    composer install
+    npm install
+    npm run build
+    ```
 
-## Security Vulnerabilities
+3.  **Set up your environment file:**
+    ```bash
+    cp .env.example .env
+    ```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+4.  **Generate an application key:**
+    ```bash
+    php artisan key:generate
+    ```
+
+5.  **Add your Stripe API keys:**
+    * Log in to your [Stripe Dashboard](https://dashboard.stripe.com/apikeys).
+    * Open your `.env` file and add your **Publishable Key** and **Secret Key**.
+    ```env
+    STRIPE_KEY=pk_test_YourPublishableKeyGoesHere
+    STRIPE_SECRET=sk_test_YourSecretKeyGoesHere
+    ```
+
+6.  **Run the database migrations:**
+    ```bash
+    php artisan migrate
+    ```
+
+7.  **Serve the application:**
+    ```bash
+    php artisan serve
+    ```
+
+### **3. Usage**
+
+Once the application is running, navigate to the following URL in your browser to see the payment form in action:
+
+`http://127.0.0.1:8000/pay`
+
+***
+
+## Security 🔒
+
+This project is configured to use environment variables for API keys. Your `.env` file is included in `.gitignore` by default. **Never commit your `.env` file or hardcode your secret API keys directly into your application code.**
+
+***
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This project is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
